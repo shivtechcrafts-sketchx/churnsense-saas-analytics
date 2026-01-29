@@ -14,13 +14,15 @@ INSERT INTO users (name, email, signup_date, country) VALUES
 ('Carlos Ruiz', 'carlos@gmail.com', '2024-05-30', 'Mexico'),
 ('Linda Lee', 'linda@gmail.com', '2024-06-15', 'Canada');
 
+-- Subscriptions (fixed)
 INSERT INTO subscriptions (user_id, plan_id, start_date, end_date, status) VALUES
-(1, 1, '2024-01-10', '2024-02-10', 'cancelled'),
-(2, 2, '2024-02-15', '2024-05-15', 'active'),
+(1, 1, '2024-01-10', '2024-02-10', 'churned'),
+(2, 2, '2024-02-15', '2024-03-15', 'churned'),
 (3, 3, '2024-03-20', '2025-03-20', 'active'),
-(4, 4, '2024-04-25', '2024-10-25', 'active'),
-(5, 5, '2024-05-30', '2024-08-30', 'active'),
+(4, 4, '2024-04-25', '2024-10-25', 'churned'),
+(5, 5, '2024-05-30', '2024-08-30', 'churned'),
 (6, 6, '2024-06-15', '2025-06-15', 'active');
+
 
 INSERT INTO login_logs (user_id, login_date) VALUES
 (1, '2024-02-01'),
