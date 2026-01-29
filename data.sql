@@ -1,59 +1,22 @@
-CREATE DATABASE saas_churn_db;
-USE saas_churn_db;
+INSERT INTO plans (plan_name, price, duration_months) VALUES
+('Basic', 499, 1),
+('Pro', 999, 1),
+('Enterprise', 2999, 12);
 
-CREATE TABLE users (
-    user_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100),
-    email VARCHAR(100) UNIQUE,
-    signup_date DATE,
-    country VARCHAR(50)
-);
+INSERT INTO users (name, email, signup_date, country) VALUES
+('Rahul Sharma', 'rahul@gmail.com', '2024-01-10', 'India'),
+('Priya Singh', 'priya@gmail.com', '2024-02-15', 'India'),
+('John Doe', 'john@gmail.com', '2024-03-20', 'USA');
 
-CREATE TABLE plans (
-    plan_id INT PRIMARY KEY AUTO_INCREMENT,
-    plan_name VARCHAR(50),
-    price DECIMAL(10,2),
-    duration_months INT
-);
+INSERT INTO subscriptions (user_id, plan_id, start_date, end_date, status) VALUES
+(1, 1, '2024-01-10', '2024-02-10', 'cancelled'),
+(2, 2, '2024-02-15', '2024-05-15', 'active'),
+(3, 3, '2024-03-20', '2025-03-20', 'active');
 
-CREATE TABLE subscriptions (
-    subscription_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    plan_id INT,
-    start_date DATE,
-    end_date DATE,
-    status VARCHAR(20),
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (plan_id) REFERENCES plans(plan_id)
-);
+INSERT INTO login_logs (user_id, login_date) VALUES
+(1, '2024-02-01'),
+(2, '2024-05-10'),
+(3, '2025-01-15');
 
-CREATE TABLE login_logs (
-    log_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    login_date DATE,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
-);
-
-CREATE TABLE feature_usage (
-    usage_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    feature_name VARCHAR(100),
-    usage_date DATE,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
-);
-
-CREATE TABLE payments (
-    payment_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    amount DECIMAL(10,2),
-    payment_date DATE,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
-);
-
-CREATE TABLE churn_events (
-    churn_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    churn_date DATE,
-    reason VARCHAR(100),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
-);
+INSERT INTO churn_events (user_id, churn_date, reason) VALUES
+(1, '2024-02-15', 'Low Usage');
